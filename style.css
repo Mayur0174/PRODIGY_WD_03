@@ -1,0 +1,65 @@
+body {
+    font-family: 'Inter', sans-serif;
+}
+/* Custom styles for X and O with smooth transitions */
+.cell-x::before, .cell-x::after {
+    content: '';
+    position: absolute;
+    width: 80%;
+    height: 0.75rem; /* 12px */
+    background-color: #ec4899; /* Pink 500 */
+    border-radius: 9999px;
+    transition: transform 0.3s ease-in-out;
+}
+.cell-x::before {
+    transform: rotate(45deg) scaleX(0);
+    animation: growX1 0.4s ease-in-out forwards;
+}
+.cell-x::after {
+    transform: rotate(-45deg) scaleX(0);
+    animation: growX2 0.4s ease-in-out forwards;
+}
+
+@keyframes growX1 {
+    from { transform: rotate(45deg) scaleX(0); }
+    to { transform: rotate(45deg) scaleX(1); }
+}
+@keyframes growX2 {
+    from { transform: rotate(-45deg) scaleX(0); }
+    to { transform: rotate(-45deg) scaleX(1); }
+}
+.cell-x::after {
+    animation-delay: 0.1s;
+}
+
+
+.cell-o::before {
+    content: '';
+    position: absolute;
+    width: 70%;
+    height: 70%;
+    border: 0.75rem solid #f59e0b; /* Amber 500 */
+    border-radius: 50%;
+    transition: transform 0.3s ease-in-out;
+    transform: scale(0);
+    animation: growO 0.4s ease-in-out forwards;
+}
+@keyframes growO {
+    from { transform: scale(0); }
+    to { transform: scale(1); }
+}
+
+/* Winning cell highlight */
+.winning-cell {
+    animation: pulse 1s infinite;
+}
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+}
